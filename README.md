@@ -4,7 +4,7 @@ shy_project是一个旨在自主实现计算机系统的项目。它由四个主
 
 2. shyemu模拟器：shyemu是一个用于运行shy语言程序的模拟器。使用shyemu模拟器，可以在计算机环境中执行shy语言程序，并进行调试和测试。
 
-3. shy_hardware硬件：shy_hardware是一个专门为运行shy语言而设计的硬件系统。它是一个自主实现的计算机系统，包括自定义的处理器架构、内存模块和设备接口等。shy_hardware提供了与shy语言的无缝集成，使得可以直接在硬件上运行shy程序。
+3. shy_hardware硬件：shy_hardware是一个专门为运行shy语言而设计的16位计算机。
 
 4. shy编译器：shy编译器是一个用于将shy语言程序转换为可在shy_hardware上执行的机器码的软件工具。它接受shy源代码作为输入，并进行语法解析、优化和转换等过程，生成相应的机器码。
 
