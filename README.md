@@ -92,3 +92,34 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 5.and
 
 <p id=and>语法：</p>
+`and num1 num2`
+
+将`num1`和`num2`进行AND操作，结果保存在寄存器`hx`中。
+例子：运行前
+0x0001:0x00FF
+运行`and 0x01 0xFF`
+0x0001:0x0000
+
+#### 6.or
+
+<p id=or>语法：</p>
+ `or num1 num2`
+
+将`num1`和`num2`进行OR操作，结果保存在寄存器`hx`中。
+
+例子：运行前
+0x0001:0xFFFF
+运行``or 0x01 0xFF`
+0x0001:0x00FF
+
+#### 7.xor
+
+ <p id=xor>语法：</p>
+ `xor num1 num2`
+
+ 将`num1`和`num2`进行XOR操作，结果保存在寄存器`hx`中。
+ 例子：运行前
+ 	0x0001:0xFF00
+    运行`xor 0x01 0xF0F0`
+    0x0001:0x0FF0
+ 
