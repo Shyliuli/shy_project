@@ -9,6 +9,8 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 
 程序在运行前需要通过编译器将指令转换为对应的二进制形式，并将其写入内存。在下面的所有内容中，我们用ox表示一个内存地址，用num表示一个立即数。如果有多个相同类型的参数，则用ox1、ox2或num1、num2来表示它们。
 
+我们还会用到ax，bx....jx共8个寄存器，其中ax-ex为通用寄存器，fx专门用于存储cpe和equ的结果，gx被赋非0值时退出程序，hx用于保存and or xor的结果，ix-px也是通用寄存器（为什么选fx，gx，hx作为特殊寄存器？一方面作者曾设计过8寄存器版本发现不够用，但是特殊寄存器就保留了；另一方面感谢数学这辈子也忘不了fx，gx了（笑））
+
 <span id="add">以下是一个示例：</span>
 
 对于指令 `add [0x1234] 1234`，编译器将其转换为二进制形式 `10 12 34 01 04 D2 00`。
@@ -179,7 +181,7 @@ fx=0xFF
 0x0002:0x0000
 fx=0x00
 
-#### 11.in
+#### 12.in
 
 <p id=in>语法：</p>
 
@@ -191,7 +193,7 @@ fx=0x00
 输入0x1234
 0x0001:0x1234
 
-#### 12.out
+#### 13.out
 
 <p id=out>语法：</p>
 
@@ -202,9 +204,9 @@ fx=0x00
 运行`out `
 输出0x34
 
-#### 13.jmp
+#### 14.jmp
 
-<p id=out>语法：</p>
+<p id=jmp>语法：</p>
 
 `jmp ox/label`
 若fx=0x0001跳转至`ox`指定的位置。
@@ -214,4 +216,38 @@ fx=0x00
 label等效于label下一条指令第一个字节的地址
 因为每一条指令都会被编译为7个字节
 所以设下一个命令为第n条命令
-label=7n+0x20（为什么要加ox20见[[地址表](https://github.com/Shyliuli/shy_project/blob/shy_hardware/README.md)]
+label=7n+0x20（为什么要加0x20见[[地址表](https://github.com/Shyliuli/shy_project/blob/shy_hardware/README.md)]
+例子：
+
+```in ax
+set bx 0x10//set就是赋值语句，见16.set
+cpe [ax] [bx]//若[ax]比[bx]小，fx=0x00，反之则为0x01
+jmp 0x2A//只有fx为0x00时跳转
+out 0x01
+set  gx 0x01//gx不为0x00时程序退出，这条命令地址为0x2A
+```
+
+这段代码中，输入内容小于0x10则输出0x01，反之则直接跳转到`set gx 0x01`语句直接退出。
+
+#### 15.equ
+
+<p id=equ>语法：</p>
+
+`equ num1 num2`
+
+若num1 = num2，fx=0x01，反之fx=0x00
+例子：
+运行前fx=0x01
+运行`equ 0x10 0x20`
+fx=0x00
+
+#### 16.set
+
+<p id=set>语法：</p>
+
+`set ox num`
+将ox赋值为num
+例子：
+运行前ax=0x01
+运行`set ax 0x05`
+ax=0x05
