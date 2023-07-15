@@ -92,6 +92,7 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 5.and
 
 <p id=and>语法：</p>
+
 `and num1 num2`
 
 将`num1`和`num2`进行AND操作，结果保存在寄存器`hx`中。
@@ -103,7 +104,8 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 6.or
 
 <p id=or>语法：</p>
- `or num1 num2`
+
+`or num1 num2`
 
 将`num1`和`num2`进行OR操作，结果保存在寄存器`hx`中。
 
@@ -115,7 +117,8 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 7.xor
 
 <p id=xor>语法：</p>
- `xor num1 num2`
+
+`xor num1 num2`
 
 将`num1`和`num2`进行XOR操作，结果保存在寄存器`hx`中。
 例子：运行前
@@ -126,7 +129,8 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 8.nor
 
 <p id=nor>语法：</p>
- `nor num `
+
+`nor num `
 
 将`num`进行NOR操作，结果保存在寄存器`hx`中。
 例子：运行前
@@ -137,7 +141,8 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 9.mov
 
 <p id=mov>语法：</p>
- `mov ox1 ox2`
+
+`mov ox1 ox2`
 
 将`ox1`指向的内容赋值给`ox2`；并将 `ox1`清0。
 例子：运行前
@@ -150,6 +155,7 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 10.reset
 
 <p id=reset>语法：</p>
+
 `reset ox`
 将`ox`指向的内容清0。
 例子：运行前
@@ -160,7 +166,8 @@ shy_language的整体思路借鉴了x86汇编语言，它由多条命令组成�
 #### 11.cpe
 
 <p id=cpe>语法：</p>
- `cpe num1 num2`
+
+`cpe num1 num2`
 
 比较num1和num2，若num1>=num2，赋值fx为0x01，反之则赋值fx为0x00。
 例子：运行前
@@ -175,33 +182,36 @@ fx=0x00
 #### 11.in
 
 <p id=in>语法：</p>
- `in ox `
- 输入字节，保存在寄存器`ox`中。
- 例子：运行前
- 0x0001:0x12
- 运行`in 0x0001`
- 输入0x1234
- 0x0001:0x1234
+
+`in ox `
+输入字节，保存在寄存器`ox`中。
+例子：运行前
+0x0001:0x12
+运行`in 0x0001`
+输入0x1234
+0x0001:0x1234
 
 #### 12.out
 
 <p id=out>语法：</p>
- `out `
- 输出`ax`指向的字节
- 例子：运行前
- 0x0001:0x34
- 运行`out `
- 输出0x34
+
+`out `
+输出`ax`指向的字节
+例子：运行前
+0x0001:0x34
+运行`out `
+输出0x34
 
 #### 13.jmp
 
-<p id=jmp>语法：</p>
- `jmp ox/label`
- 若fx=0x0001跳转至`ox`指定的位置。
- 反之不跳转
- 可以用`.ThisIsALabel`
+<p id=out>语法：</p>
+
+`jmp ox/label`
+若fx=0x0001跳转至`ox`指定的位置。
+反之不跳转
+可以用`.ThisIsALabel`
 创建一个label
 label等效于label下一条指令第一个字节的地址
 因为每一条指令都会被编译为7个字节
 所以设下一个命令为第n条命令
-label=7n+0x20（为什么要加ox20见[地址表](https://github.com/Shyliuli/shy_project/blob/shy_hardware/README.md)）
+label=7n+0x20（为什么要加ox20见[[地址表](https://github.com/Shyliuli/shy_project/blob/shy_hardware/README.md)]
